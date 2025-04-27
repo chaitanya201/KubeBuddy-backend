@@ -1,7 +1,7 @@
 class ErrorResponse {
   metadata?: {
-    statusCode?: number;
-    message?: string;
+    statusCode: number;
+    message: string;
   };
   data?: {
     responseData: any;

@@ -4,6 +4,7 @@ import {
   index,
   integer,
   pgTable,
+  serial,
   text,
   timestamp,
 } from "drizzle-orm/pg-core";
@@ -12,7 +13,7 @@ import sessionTable from "./session.table";
 export const userTable = pgTable(
   "user",
   {
-    id: integer("id").primaryKey(),
+    id: serial("id").primaryKey(),
     publicId: text("public_id").notNull().unique(),
     name: text("name").notNull(),
     email: text("email").notNull().unique(),

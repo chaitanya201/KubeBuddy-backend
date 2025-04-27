@@ -6,7 +6,6 @@ import morgan from "morgan";
 import appConfig from "./config/appConfig";
 import authRouter from "./routes/auth/auth.routes";
 import { initRedis } from "./db/redis/connection";
-import db from "./db/drizzle/dbConnection";
 const app = express();
 
 app.use(
@@ -22,14 +21,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 const baseUrl = appConfig.BASE_URL;
-db;
 initRedis();
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use(`${baseUrl}/auth`, authRouter);
+app.use(`/${baseUrl}/auth`, authRouter);
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err);
